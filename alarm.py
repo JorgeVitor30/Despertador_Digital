@@ -3,7 +3,6 @@ from tkinter import *
 from PIL import Image, ImageTk
 from datetime import datetime
 from time import sleep
-from threading import Thread
 
 import sounddevice as sd 
 import soundfile as sf 
@@ -110,12 +109,20 @@ def ativar_alarme():
     if selecionado.get():
         print('Ativar:', selecionado.get())
         alarme()
+        
+
+def desativar_alarme():
+    if not selecionado.get():
+        print('Ativar:', selecionado.get())
+        sd.stop()
 
 selecionado = IntVar()
 
-radio = Radiobutton(frame_corpo,command=ativar_alarme, text='Ativar', font=('Ivy 10'), fg=cor4,bg=fundo,value=1, variable=selecionado)
+radio = Radiobutton(frame_corpo,command=ativar_alarme, text='Ativar', font=('Ivy 10'), fg=cor6,bg=fundo,value=1, variable=selecionado)
 radio.place(x=125,y=95)
 
+radio = Radiobutton(frame_corpo,command=desativar_alarme, text='Desativar', font=('Ivy 10'), fg=cor4,bg=fundo,value=1, variable=selecionado)
+radio.place(x=200,y=95)
 
 
 def tocar_alarme():
